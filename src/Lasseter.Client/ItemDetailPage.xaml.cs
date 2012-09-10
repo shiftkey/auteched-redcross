@@ -58,12 +58,6 @@ namespace Lasseter.Client
             {
                 navigationParameter = pageState["SelectedItem"];
             }
-
-            // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            var item = LasseterDataSource.GetItem(navigationParameter.ToString());
-            //this.DefaultViewModel["Group"] = item.Group;
-            //this.DefaultViewModel["Items"] = item.Group.Items;
-        //    this.flipView.SelectedItem = item;
         }
 
         /// <summary>

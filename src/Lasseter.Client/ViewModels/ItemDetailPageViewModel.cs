@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using Lasseter.Client.DataModel;
 using Lasseter.Client.Data;
+using Lasseter.Entities;
 
 namespace Lasseter.Client.ViewModels
 {
     public class ItemDetailPageViewModel : INotifyPropertyChanged
     {
-        private LasseterPerson _person;
+        private Person _person;
 
-        public LasseterPerson Person
+        public Person Person
         {
             get { return _person; }
             set
@@ -34,7 +35,7 @@ namespace Lasseter.Client.ViewModels
         public ItemDetailPageViewModel(int itemId)
         {
             //bring in the properties, add INotifyPropertyChanged
-            LasseterPerson person = LasseterDataSource.GetItem(itemId.ToString());
+            Entities.Person person = LasseterData.AllPeople.Where((x, r) => x.UniqueId == itemId).First();
             this.Person = person;
         }
 
