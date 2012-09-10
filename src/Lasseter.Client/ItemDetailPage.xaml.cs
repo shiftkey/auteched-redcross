@@ -26,12 +26,9 @@ namespace Lasseter.Client
     /// </summary>
     public sealed partial class ItemDetailPage : Lasseter.Client.Common.LayoutAwarePage
     {
-        
-
         public ItemDetailPage()
         {
             this.InitializeComponent();
-            
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -40,6 +37,8 @@ namespace Lasseter.Client
             int itemId = (int)e.Parameter;
             var vm = new ItemDetailPageViewModel(itemId);
             this.ViewModel = vm;
+            // translate boolean
+            PersonOnDuty.Text = vm.Person.OnDuty ? "Yes" : "No";
             AddPin(vm.Person.Name, vm.Person.Latitude, vm.Person.Longitude);
             CentreZoomMap(vm.Person.Latitude, vm.Person.Longitude,12);
             //LasseterPerson person = LasseterDataSource.GetItem(itemId.ToString());

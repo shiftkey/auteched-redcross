@@ -77,11 +77,11 @@
 
         <!--<TextBlock Text="{Binding Person.Name}" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Grid.Row="0" Grid.Column="1" Style="{StaticResource PageHeaderTextStyle}"/> -->
         <TextBlock Text="Latitude" VerticalAlignment="Center" FontSize="20" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="0,0,0,50"/>
-        <TextBlock Text="{Binding Person.Latitude}" FontSize="20" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"  Grid.Row="1" Grid.Column="0"/>
+        <TextBlock Text="{Binding Person.Latitude}" FontSize="20" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"  Grid.Row="1" Grid.Column="0"/>
         <TextBlock Text="Longitude" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="0" Margin="0,0,0,50" FontSize="20"/>
-        <TextBlock Text="{Binding Person.Longitude}" FontSize="20" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"  Grid.Row="2" Grid.Column="0"/>
+        <TextBlock Text="{Binding Person.Longitude}" FontSize="20" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"  Grid.Row="2" Grid.Column="0"/>
         <TextBlock Text="On Duty" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="0" Margin="0,0,0,50" FontSize="20"/>
-        <TextBlock Text="{Binding Person.OnDuty}" FontSize="20" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="0"/>
+        <TextBlock FontSize="20" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Grid.Column="0" x:Name="PersonOnDuty"/>
         <Maps:Map Grid.Column="1" HorizontalAlignment="Center" Grid.RowSpan="3" VerticalAlignment="Center" x:Name="detailedMap" Credentials="AqX7H3KE05FxjI7td5C78WpSiMFzfJkucphNijXVmpOU0wKFb7c_dVY7FHKO75DW" Width="900" Height="600" Grid.Row="1"/>
 
         <!-- Back button and page title -->
