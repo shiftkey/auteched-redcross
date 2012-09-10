@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using Bing.Maps;
+
 // The Item Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234232
 
 namespace Lasseter.Client
@@ -38,8 +40,26 @@ namespace Lasseter.Client
             int itemId = (int)e.Parameter;
             var vm = new ItemDetailPageViewModel(itemId);
             this.ViewModel = vm;
+            AddPin(vm.Person.Name, vm.Person.Latitude, vm.Person.Longitude);
+            CentreZoomMap(vm.Person.Latitude, vm.Person.Longitude,12);
             //LasseterPerson person = LasseterDataSource.GetItem(itemId.ToString());
             //Person = person;
+        }
+
+        // TODO: Refactor to utility class
+        void AddPin(string text, double latitude, double longitude)
+        {
+            Pushpin pushpin = new Pushpin();
+            pushpin.Text = text;
+            MapLayer.SetPosition(pushpin, new Location(latitude, longitude));
+            detailedMap.Children.Add(pushpin);
+        }
+
+
+        void CentreZoomMap(double latitude, double longitude,double zoom)
+        {
+            detailedMap.Center = new Location(latitude, longitude);
+            detailedMap.ZoomLevel = zoom;
         }
 
         /// <summary>
