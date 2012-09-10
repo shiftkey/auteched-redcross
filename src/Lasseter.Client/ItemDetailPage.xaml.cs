@@ -61,7 +61,7 @@ namespace Lasseter.Client
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
-            var selectedItem = (SampleDataItem)this.flipView.SelectedItem;
+            var selectedItem = (Person)this.flipView.SelectedItem;
             pageState["SelectedItem"] = selectedItem.UniqueId;
         }
     }
