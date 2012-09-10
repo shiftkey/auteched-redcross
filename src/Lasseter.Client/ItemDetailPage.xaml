@@ -17,7 +17,7 @@
         <CollectionViewSource
             x:Name="itemsViewSource"
             Source="{Binding Items}"
-            d:Source="{Binding AllGroups[0].Items, Source={d:DesignInstance Type=data:LasseterDataSource, IsDesignTimeCreatable=True}}"/>
+            d:Source="{Binding AllGroups[0].Items, Source={d:DesignInstance Type=data:LasseterData, IsDesignTimeCreatable=True}}"/>
     </Page.Resources>
 
     <!--
@@ -36,12 +36,16 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
 
-        
-        <TextBlock Text="{Binding Person.Title}" FontSize="16" Foreground="White" Grid.Row="0"/>
-        <TextBlock Text="{Binding Person.Subtitle}" FontSize="16" Foreground="White" Grid.Row="1"/>
-        <TextBlock Text="{Binding Person.UniqueId}" FontSize="16" Foreground="White" Grid.Row="2"/>
+        <TextBlock Text="{Binding Person.Name}" FontSize="16" Foreground="White" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="1" Style="{StaticResource PageHeaderTextStyle}"/>
+        <TextBlock Text="{Binding Person.Latitude}" FontSize="16" Foreground="White" Grid.Row="1" Grid.Column="1"/>
+        <TextBlock Text="{Binding Person.Longitude}" FontSize="16" Foreground="White" Grid.Row="2" Grid.Column="1"/>
         
 
             <!--
