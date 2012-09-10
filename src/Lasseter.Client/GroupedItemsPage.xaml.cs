@@ -40,7 +40,7 @@ namespace Lasseter.Client
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            var sampleDataGroups = SampleDataSource.GetGroups((String)navigationParameter);
+            var sampleDataGroups = LasseterDataSource.GetGroups((String)navigationParameter);
             this.DefaultViewModel["Groups"] = sampleDataGroups;
         }
 
@@ -71,6 +71,12 @@ namespace Lasseter.Client
             // by passing required information as a navigation parameter
             var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
             this.Frame.Navigate(typeof(ItemDetailPage), itemId);
+        }
+
+        private void btnFind_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: find matching values from database
+            groupedItemsViewSource.Source = LasseterDataSource.GetFilteredItems(tbFind.Text);
         }
     }
 }

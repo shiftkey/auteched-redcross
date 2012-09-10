@@ -47,7 +47,7 @@ namespace Lasseter.Client
             }
 
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            var item = SampleDataSource.GetItem((String)navigationParameter);
+            var item = LasseterDataSource.GetItem((String)navigationParameter);
             this.DefaultViewModel["Group"] = item.Group;
             this.DefaultViewModel["Items"] = item.Group.Items;
             this.flipView.SelectedItem = item;

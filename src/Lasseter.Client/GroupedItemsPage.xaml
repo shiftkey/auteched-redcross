@@ -22,7 +22,7 @@
             Source="{Binding Groups}"
             IsSourceGrouped="true"
             ItemsPath="TopItems"
-            d:Source="{Binding AllGroups, Source={d:DesignInstance Type=data:SampleDataSource, IsDesignTimeCreatable=True}}"/>
+            d:Source="{Binding AllGroups, Source={d:DesignInstance Type=data:LasseterDataSource, IsDesignTimeCreatable=True}}"/>
     </Page.Resources>
 
     <!--
@@ -126,6 +126,9 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Text="{StaticResource AppName}" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}"/>
+            <TextBlock x:Name="labelFind" Text="Find" HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Center" Margin="0,0,250,0" />
+            <TextBox x:Name="tbFind" HorizontalAlignment="Right" Grid.Column="1" Width="150" Height="50" VerticalAlignment="Center" Margin="0,0,90,0"/>
+            <Button VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1" x:Name="btnFind" Margin="0,0,10,0" Height="50" Width="80" Content="Find" Click="btnFind_Click"/>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

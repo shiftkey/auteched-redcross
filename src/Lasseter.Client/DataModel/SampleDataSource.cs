@@ -221,9 +221,9 @@ namespace Lasseter.Client.Data
     /// SampleDataSource initializes with placeholder data rather than live production
     /// data so that sample data is provided at both design-time and run-time.
     /// </summary>
-    public sealed class SampleDataSource
+    public sealed class LasseterDataSource
     {
-        private static SampleDataSource _sampleDataSource = new SampleDataSource();
+        private static LasseterDataSource _sampleDataSource = new LasseterDataSource();
 
         private ObservableCollection<SampleDataGroup> _allGroups = new ObservableCollection<SampleDataGroup>();
         public ObservableCollection<SampleDataGroup> AllGroups
@@ -254,7 +254,16 @@ namespace Lasseter.Client.Data
             return null;
         }
 
-        public SampleDataSource()
+        public static IEnumerable<SampleDataGroup> GetFilteredItems(string filterValue)
+        {
+            ObservableCollection<SampleDataGroup> filteredGroups = new ObservableCollection<SampleDataGroup>();
+            var group1 = new SampleDataGroup("Group-1", "value1", "value1 subtitle", "", "test1");
+            group1.Items.Add(new SampleDataItem("Group1Item1", "item1value", "item1 subtitle", "", "item 1", "dklsafjdklsjfkdlas=", group1));
+            group1.Items.Add(new SampleDataItem("Group1Item2", "item2value", "item2 subtitle", "", "item 2", "fdgghfhjgghfd", group1));
+            filteredGroups.Add(group1);
+            return filteredGroups;
+        }
+        public LasseterDataSource()
         {
             String ITEM_CONTENT = String.Format("Item Content: {0}\n\n{0}\n\n{0}\n\n{0}\n\n{0}\n\n{0}\n\n{0}",
                         "Curabitur class aliquam vestibulum nam curae maecenas sed integer cras phasellus suspendisse quisque donec dis praesent accumsan bibendum pellentesque condimentum adipiscing etiam consequat vivamus dictumst aliquam duis convallis scelerisque est parturient ullamcorper aliquet fusce suspendisse nunc hac eleifend amet blandit facilisi condimentum commodo scelerisque faucibus aenean ullamcorper ante mauris dignissim consectetuer nullam lorem vestibulum habitant conubia elementum pellentesque morbi facilisis arcu sollicitudin diam cubilia aptent vestibulum auctor eget dapibus pellentesque inceptos leo egestas interdum nulla consectetuer suspendisse adipiscing pellentesque proin lobortis sollicitudin augue elit mus congue fermentum parturient fringilla euismod feugiat");
