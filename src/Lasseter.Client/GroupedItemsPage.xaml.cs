@@ -90,7 +90,7 @@ namespace Lasseter.Client
         {
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
-            var itemId = ((Person)e.ClickedItem).UniqueId;
+            var itemId = ((Person)e.ClickedItem).ID;
             this.Frame.Navigate(typeof(ItemDetailPage), itemId);
         }
 

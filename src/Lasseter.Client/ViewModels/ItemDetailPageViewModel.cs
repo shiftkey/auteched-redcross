@@ -35,7 +35,7 @@ namespace Lasseter.Client.ViewModels
         public ItemDetailPageViewModel(int itemId)
         {
             //bring in the properties, add INotifyPropertyChanged
-            Entities.Person person = LasseterData.AllPeople.Where((x, r) => x.UniqueId == itemId).First();
+            Entities.Person person = LasseterData.AllPeople.Where((x, r) => x.ID == itemId).First();
             this.Person = person;
         }
 
