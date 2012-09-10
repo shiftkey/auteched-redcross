@@ -124,6 +124,7 @@
     <Compile Include="Common\LayoutAwarePage.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="ViewModels\LocationViewModel.cs" />
     <Compile Include="ViewModels\ItemDetailPageViewModel.cs" />
     <Compile Include="ViewModels\PeopleViewModel.cs" />
   </ItemGroup>

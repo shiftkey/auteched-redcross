@@ -104,9 +104,20 @@ namespace Lasseter.Client
         private async void FillSelectedPeople(String PostCode)
         {
             this.DataContext = new PeopleViewModel();
+            LocationViewModel LocationContext = new LocationViewModel();
             await ((PeopleViewModel)this.DataContext).LoadSelectedPeople(PostCode);
+            await ((LocationViewModel)LocationContext).LoadSelectedLocations(PostCode);
+            ObservableCollection<Entities.PostCode> location = ((LocationViewModel)LocationContext).PCode;
+            double LocationLatitude = -25.584999;
+            double LocationLongitude = 134.503998;
+            foreach (PostCode loc in location)
+            {
+                LocationLatitude = loc.Latitude;
+                LocationLongitude = loc.Longitude;
+            }
+
             myMap.Children.Clear();
-            CentreZoomMap(-25.584999, 134.503998, 5);
+            CentreZoomMap(LocationLatitude, LocationLongitude, 9);
             SetupPins();
             //LasseterPerson person = LasseterDataSource.GetItem(itemId.ToString());
             //Person = person;

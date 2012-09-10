@@ -56,7 +56,8 @@ namespace Lasseter.Client.Data
         public static async Task<IEnumerable<Entities.PostCode>> LocationSelectedData(String pcode)
         {
             HttpClient client = new HttpClient();
-            var response = await client.GetStringAsync("http://10.43.4.252/MvcwebService/api/postCode?pCode=" + pcode);
+            String testing = "http://10.43.4.252/MvcwebService/api/postCode?pCode1=" + pcode;
+            var response = await client.GetStringAsync(testing);
 
             var location = JsonConvert.DeserializeObject<List<Entities.PostCode>>(response);
             AllLocations = new ObservableCollection<PostCode>(location);
