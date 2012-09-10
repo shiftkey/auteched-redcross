@@ -41,7 +41,7 @@ namespace Lasseter.Client
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
             var sampleDataGroups = LasseterDataSource.GetGroups((String)navigationParameter);
-            if (itemGridView == null) { itemGridView = new GridView(); }
+            
             
             this.DefaultViewModel["Groups"] = sampleDataGroups;
         }

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Net.Http;
 using System.Runtime.CompilerServices;
 using Windows.ApplicationModel.Resources.Core;
 using Windows.Foundation;
@@ -13,6 +14,7 @@ using Windows.UI.Xaml.Media.Imaging;
 using System.Collections.Specialized;
 using Lasseter.Client.DataModel;
 using Lasseter.Entities;
+using Newtonsoft.Json;
 
 // The data model defined by this file serves as a representative example of a strongly-typed
 // model that supports notification when members are added, removed, or modified.  The property
@@ -223,7 +225,7 @@ namespace Lasseter.Client.Data
     /// SampleDataSource initializes with placeholder data rather than live production
     /// data so that sample data is provided at both design-time and run-time.
     /// </summary>
-    public sealed class LasseterDataSource
+    public sealed class LasseterDataSource : INotifyPropertyChanged
     {
         private static LasseterDataSource _sampleDataSource = new LasseterDataSource();
         private ObservableCollection<Entities.Person> _allGroups = new ObservableCollection<Entities.Person>();
@@ -236,8 +238,17 @@ namespace Lasseter.Client.Data
         public ObservableCollection<Entities.Person> AllGroups
         {
             get { return this._allGroups; }
+            set { _allGroups = value;
+            OnPropertyChanged("AllGroups");
+            }
         }
-
+        protected void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
         public static IEnumerable<LasseterPerson> GetGroups(string uniqueId)
         {
             if (!uniqueId.Equals("AllGroups")) throw new ArgumentException("Only 'AllGroups' is supported as a collection of groups");
@@ -287,12 +298,27 @@ namespace Lasseter.Client.Data
         }
         public LasseterDataSource() 
         {
-            var person = new Entities.Person { UniqueId=1, Name = "Joe Bloggs", Latitude = 1234, Longitude = 4321 };
-            this.AllGroups.Add(person);
-            var person1 = new Entities.Person { UniqueId=2, Name = "Jim Bloggs", Latitude = 1234, Longitude = 4321 };
-            this.AllGroups.Add(person1);
+
+            //var person = new Entities.Person { UniqueId = 1, Name = "Joe Bloggs", Latitude = 1234, Longitude = 4321 };
+            //this.AllGroups.Add(person);
+            //var person1 = new Entities.Person { UniqueId = 2, Name = "Jim Bloggs", Latitude = 1234, Longitude = 4321 };
+            //this.AllGroups.Add(person1);
+            PopulateInitialData();
+        }
+
+        private async void PopulateInitialData()
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync("http://10.43.4.252/MvcwebService/api/values");
+
+            var people = JsonConvert.DeserializeObject<List<Entities.Person>>(response);
+            foreach (Entities.Person person in people)
+            {
+                this.AllGroups.Add(person);
+            }
         }
 
 
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -39,9 +39,9 @@
 
 
         
-            <TextBlock Text="{Binding Person.Title}" FontSize="48" Foreground="Green" Grid.Row="0"/>
-        <TextBlock Text="{Binding Person.Subtitle}" FontSize="48" Foreground="Green" Grid.Row="1"/>
-        <TextBlock Text="{Binding Person.UniqueId}" FontSize="48" Foreground="Green" Grid.Row="2"/>
+        <TextBlock Text="{Binding Person.Title}" FontSize="16" Foreground="White" Grid.Row="0"/>
+        <TextBlock Text="{Binding Person.Subtitle}" FontSize="16" Foreground="White" Grid.Row="1"/>
+        <TextBlock Text="{Binding Person.UniqueId}" FontSize="16" Foreground="White" Grid.Row="2"/>
         
 
             <!--
