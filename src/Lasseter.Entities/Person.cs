@@ -9,11 +9,8 @@ namespace Lasseter.Entities
     class Person
     {
         public String Name { get; set; }
-        public String Skills { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-        public String Other { get; set; }
-        public int PostCode { get; set; }
     }
 
 
