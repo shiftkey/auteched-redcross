@@ -43,6 +43,17 @@ namespace Lasseter.Client.Data
             return AllPeople;
         }
 
+        public static async Task<IEnumerable<Entities.Person>> PopulateSelectedData(String pcode)
+        {
+            HttpClient client = new HttpClient();
+            var response = await client.GetStringAsync("http://10.43.4.252/MvcwebService/api/values?PostCode=" + pcode);
+
+            var people = JsonConvert.DeserializeObject<List<Entities.Person>>(response);
+            AllPeople = new ObservableCollection<Person>(people);
+            return AllPeople;
+        }
+
         public static ObservableCollection<Entities.Person> AllPeople { get; set; }
+        public static ObservableCollection<Entities.Person> SelectedPeople { get; set; }
     }
 }

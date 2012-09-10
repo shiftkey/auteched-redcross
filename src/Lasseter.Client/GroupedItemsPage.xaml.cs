@@ -38,7 +38,7 @@ namespace Lasseter.Client
             base.OnNavigatedTo(e);
             this.DataContext = new PeopleViewModel();
             await ((PeopleViewModel)this.DataContext).LoadPeople();
-            CentreZoomMap(-25.584999, 134.503998);
+            CentreZoomMap(-25.584999, 134.503998, 4.5);
             SetupPins();
             //LasseterPerson person = LasseterDataSource.GetItem(itemId.ToString());
             //Person = person;
@@ -61,10 +61,10 @@ namespace Lasseter.Client
             myMap.Children.Add(pushpin);
         }
 
-        void CentreZoomMap(double latitude, double longitude)
+        void CentreZoomMap(double latitude, double longitude, double zoomLevel)
         {
             myMap.Center = new Location(latitude,longitude);
-            myMap.ZoomLevel = 4.5;
+            myMap.ZoomLevel = zoomLevel;
         }
 
         /// <summary>
@@ -98,6 +98,18 @@ namespace Lasseter.Client
         {
             // TODO: find matching values from database
             //groupedItemsViewSource.Source = LasseterDataSource.GetFilteredItems(tbFind.Text);
+            FillSelectedPeople(tbFind.Text);
+        }
+
+        private async void FillSelectedPeople(String PostCode)
+        {
+            this.DataContext = new PeopleViewModel();
+            await ((PeopleViewModel)this.DataContext).LoadSelectedPeople(PostCode);
+            myMap.Children.Clear();
+            CentreZoomMap(-25.584999, 134.503998, 5);
+            SetupPins();
+            //LasseterPerson person = LasseterDataSource.GetItem(itemId.ToString());
+            //Person = person;
         }
     }
 }

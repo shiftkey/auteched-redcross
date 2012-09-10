@@ -22,6 +22,12 @@ namespace Lasseter.Client.ViewModels
             return true;
         }
 
+        public async Task<bool> LoadSelectedPeople(String PostCode)
+        {
+            People = new ObservableCollection<Entities.Person>(await LasseterData.PopulateSelectedData(PostCode));
+            return true;
+        }
+
         public ObservableCollection<Entities.Person> People
         {
             get { return _people; }
