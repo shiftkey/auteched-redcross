@@ -4,6 +4,7 @@ using Lasseter.Client.ViewModels;
 using Lasseter.Entities;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using Windows.Foundation;
@@ -15,6 +16,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+
+using Bing.Maps;
 
 // The Grouped Items Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234231
 
@@ -30,12 +33,37 @@ namespace Lasseter.Client
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             this.DataContext = new PeopleViewModel();
+            await ((PeopleViewModel)this.DataContext).LoadPeople();
+            CentreMap(-25.584999, 134.503998);
+            SetupPins();
             //LasseterPerson person = LasseterDataSource.GetItem(itemId.ToString());
             //Person = person;
+        }
+
+        void SetupPins()
+        {
+            ObservableCollection<Entities.Person> people = ((PeopleViewModel)this.DataContext).People;
+            foreach (Person person in people)
+            {
+                AddPin(person.Name, person.Latitude, person.Longitude);
+            }
+        }
+
+        void AddPin(string text,double latitude, double longitude)
+        {
+            Pushpin pushpin = new Pushpin();
+            pushpin.Text = text;
+            MapLayer.SetPosition(pushpin, new Location(latitude, longitude));
+            myMap.Children.Add(pushpin);
+        }
+
+        void CentreMap(double latitude, double longitude)
+        {
+            myMap.Center = new Location(latitude,longitude);
         }
 
         /// <summary>

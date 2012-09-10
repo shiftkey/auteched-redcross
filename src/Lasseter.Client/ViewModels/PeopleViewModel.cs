@@ -13,12 +13,13 @@ namespace Lasseter.Client.ViewModels
     {
         public PeopleViewModel()
         {
-            LoadPeople();
+            
         }
 
-        public async void LoadPeople()
+        public async Task<bool> LoadPeople()
         {
             People = new ObservableCollection<Entities.Person>(await LasseterData.PopulateInitialData());
+            return true;
         }
 
         public ObservableCollection<Entities.Person> People
