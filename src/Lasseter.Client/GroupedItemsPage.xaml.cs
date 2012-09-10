@@ -38,7 +38,7 @@ namespace Lasseter.Client
             base.OnNavigatedTo(e);
             this.DataContext = new PeopleViewModel();
             await ((PeopleViewModel)this.DataContext).LoadPeople();
-            CentreMap(-25.584999, 134.503998);
+            CentreZoomMap(-25.584999, 134.503998);
             SetupPins();
             //LasseterPerson person = LasseterDataSource.GetItem(itemId.ToString());
             //Person = person;
@@ -61,9 +61,10 @@ namespace Lasseter.Client
             myMap.Children.Add(pushpin);
         }
 
-        void CentreMap(double latitude, double longitude)
+        void CentreZoomMap(double latitude, double longitude)
         {
             myMap.Center = new Location(latitude,longitude);
+            myMap.ZoomLevel = 4.5;
         }
 
         /// <summary>
