@@ -15,7 +15,7 @@
         <DataTemplate x:Key="LasseterDataTemplate">
             <Grid HorizontalAlignment="Left">
                 <StackPanel VerticalAlignment="Bottom" Background="{StaticResource ListViewItemOverlayBackgroundThemeBrush}">
-                    <TextBlock Text="{Binding Name}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Height="60" Margin="15,0,15,0"/>
+                    <TextBlock Text="{Binding Name}" Foreground="{StaticResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextStyle}" Width="60" Height="60" Margin="15,0,15,0"/>
                     <TextBlock Text="{Binding Latitude}" Foreground="{StaticResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
                 </StackPanel>
             </Grid>
@@ -51,7 +51,7 @@
             
         </GridView>
 
-        <bm:Map Credentials="AqX7H3KE05FxjI7td5C78WpSiMFzfJkucphNijXVmpOU0wKFb7c_dVY7FHKO75DW" x:Name="myMap" Margin="414,0,52,28" Grid.Row="1" Width="900" Height="600">
+        <bm:Map Credentials="AqX7H3KE05FxjI7td5C78WpSiMFzfJkucphNijXVmpOU0wKFb7c_dVY7FHKO75DW" x:Name="myMap" Margin="414,0,52,28" Grid.Row="1" Width="Auto" Height="Auto">
         </bm:Map>
         <!-- Vertical scrolling list only used when snapped -->
         <ListView
