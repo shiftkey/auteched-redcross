@@ -34,7 +34,7 @@ namespace Lasseter.Client.Common
     /// </list>
     /// </summary>
     [Windows.Foundation.Metadata.WebHostHidden]
-    public class LayoutAwarePage : Page
+    public class LayoutAwarePage : Page, INotifyPropertyChanged
     {
         /// <summary>
         /// Identifies the <see cref="DefaultViewModel"/> dependency property.
@@ -42,6 +42,19 @@ namespace Lasseter.Client.Common
         public static readonly DependencyProperty DefaultViewModelProperty =
             DependencyProperty.Register("DefaultViewModel", typeof(IObservableMap<String, Object>),
             typeof(LayoutAwarePage), null);
+
+        private object _viewModel;
+
+        public object ViewModel
+        {
+            get { return _viewModel; }
+            set 
+            {
+                _viewModel = value;
+                OnPropertyChanged("ViewModel");
+            }
+        }
+
 
         private List<Control> _layoutAwareControls;
 
@@ -537,6 +550,16 @@ namespace Lasseter.Client.Common
                     if (arrayIndex >= arraySize) break;
                     array[arrayIndex++] = pair;
                 }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }

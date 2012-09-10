@@ -11,7 +11,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using System.Collections.Specialized;
-
+using Lasseter.Client.DataModel;
 using Lasseter.Entities;
 
 // The data model defined by this file serves as a representative example of a strongly-typed
@@ -244,7 +244,7 @@ namespace Lasseter.Client.Data
             List<LasseterPerson> persons = new List<LasseterPerson>();
             foreach (var person in _sampleDataSource.AllGroups)
             {
-                LasseterPerson testPerson = ConvertPersonToTestPerson(person);
+                LasseterPerson testPerson = ConvertPersonToLasseterPerson(person);
                 persons.Add(testPerson);
             }
             //return _sampleDataSource.AllGroups;
@@ -252,9 +252,9 @@ namespace Lasseter.Client.Data
         }
 
         //HACK: haven't yet figured out column mappings for data view.
-        private static LasseterPerson ConvertPersonToTestPerson(Entities.Person person)
+        private static LasseterPerson ConvertPersonToLasseterPerson(Entities.Person person)
         {
-            LasseterPerson testPerson = new LasseterPerson() { Title = person.Name, Subtitle = person.Latitude.ToString() };
+            LasseterPerson testPerson = new LasseterPerson() { UniqueId=person.UniqueId, Title = person.Name, Subtitle = person.Latitude.ToString() };
             return testPerson;
         }
 
@@ -266,13 +266,15 @@ namespace Lasseter.Client.Data
         //    return null;
         //}
 
-        //public static Person GetItem(string uniqueId)
-        //{
-        //    // Simple linear search is acceptable for small data sets
-        //    var matches = _sampleDataSource.AllGroups.SelectMany(group => group.Items).Where((item) => item.UniqueId.Equals(uniqueId));
-        //    if (matches.Count() == 1) return matches.First();
-        //    return null;
-        //}
+        public static LasseterPerson GetItem(string uniqueId)
+        {
+            // Simple linear search is acceptable for small data sets
+            var matches = (from Entities.Person i in _sampleDataSource.AllGroups where i.UniqueId.ToString().Equals(uniqueId) select i).FirstOrDefault();
+                
+                //_sampleDataSource.AllGroups.Where((item) => item.UniqueId.Equals(uniqueId));
+            if (matches!= null) return ConvertPersonToLasseterPerson(matches);
+            return null;
+        }
 
         public static IEnumerable<PersonGroup> GetFilteredItems(string filterValue)
         {
@@ -285,18 +287,12 @@ namespace Lasseter.Client.Data
         }
         public LasseterDataSource() 
         {
-            var person = new Entities.Person { Name = "Joe Bloggs", Latitude = 1234, Longitude = 4321 };
+            var person = new Entities.Person { UniqueId=1, Name = "Joe Bloggs", Latitude = 1234, Longitude = 4321 };
             this.AllGroups.Add(person);
-            var person1 = new Entities.Person { Name = "Jim Bloggs", Latitude = 1234, Longitude = 4321 };
+            var person1 = new Entities.Person { UniqueId=2, Name = "Jim Bloggs", Latitude = 1234, Longitude = 4321 };
             this.AllGroups.Add(person1);
         }
 
 
-    }
-
-    public class LasseterPerson
-    {
-        public string Title { get; set; }
-        public string Subtitle { get; set; }
     }
 }

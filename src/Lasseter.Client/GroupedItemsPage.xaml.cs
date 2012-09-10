@@ -1,5 +1,5 @@
 ﻿using Lasseter.Client.Data;
-
+using Lasseter.Client.DataModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -71,7 +71,7 @@ namespace Lasseter.Client
         {
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
-            var itemId = ((Person)e.ClickedItem).UniqueId;
+            var itemId = ((LasseterPerson)e.ClickedItem).UniqueId;
             this.Frame.Navigate(typeof(ItemDetailPage), itemId);
         }
 

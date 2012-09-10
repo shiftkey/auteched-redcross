@@ -1,5 +1,5 @@
 ﻿using Lasseter.Client.Data;
-
+using Lasseter.Client.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,9 +24,22 @@ namespace Lasseter.Client
     /// </summary>
     public sealed partial class ItemDetailPage : Lasseter.Client.Common.LayoutAwarePage
     {
+        
+
         public ItemDetailPage()
         {
             this.InitializeComponent();
+            
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            int itemId = (int)e.Parameter;
+            var vm = new ItemDetailPageViewModel(itemId);
+            this.ViewModel = vm;
+            //LasseterPerson person = LasseterDataSource.GetItem(itemId.ToString());
+            //Person = person;
         }
 
         /// <summary>
@@ -47,10 +60,10 @@ namespace Lasseter.Client
             }
 
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            //var item = LasseterDataSource.GetItem((String)navigationParameter);
+            var item = LasseterDataSource.GetItem(navigationParameter.ToString());
             //this.DefaultViewModel["Group"] = item.Group;
             //this.DefaultViewModel["Items"] = item.Group.Items;
-            //this.flipView.SelectedItem = item;
+        //    this.flipView.SelectedItem = item;
         }
 
         /// <summary>
@@ -61,8 +74,8 @@ namespace Lasseter.Client
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
-            var selectedItem = (Person)this.flipView.SelectedItem;
-            pageState["SelectedItem"] = selectedItem.UniqueId;
+          //  var selectedItem = (LasseterPerson)this.flipView.SelectedItem;
+           // pageState["SelectedItem"] = selectedItem.UniqueId;
         }
     }
 }

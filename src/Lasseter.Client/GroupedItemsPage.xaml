@@ -8,7 +8,8 @@
     xmlns:data="using:Lasseter.Client.Data"
     xmlns:common="using:Lasseter.Client.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:bm="using:Bing.Maps" 
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -35,19 +36,39 @@
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300">
+                    
+                </ColumnDefinition>
+                <ColumnDefinition Width="*">
+                    
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+        </Grid>
         <!-- Horizontal scrolling grid used in most view states -->
         <GridView x:Name="itemGridView"
             AutomationProperties.AutomationId="ItemGridView"
             AutomationProperties.Name="Grouped Items"
             Grid.RowSpan="2"
+            Grid.Column="1" 
             Padding="116,137,40,46"
             ItemsSource="{Binding Source={StaticResource groupedItemsViewSource}}"
             ItemTemplate="{StaticResource Standard250x250ItemTemplate}"
             SelectionMode="None"
-            IsSwipeEnabled="false">
+            IsSwipeEnabled="false" ItemClick="ItemView_ItemClick" IsItemClickEnabled="True">
+            
         </GridView>
+        <bm:Map Credentials="AqX7H3KE05FxjI7td5C78WpSiMFzfJkucphNijXVmpOU0wKFb7c_dVY7FHKO75DW" x:Name="myMap" Margin="10,158,-10,330" Grid.Row="1" Width="900" Height="600" Grid.Column="2">
+            <bm:Map.Children>
+                <bm:Pushpin>
+                    <bm:MapLayer.Position>
+                        <bm:Location Latitude="46.849947" Longitude="-121.32168" />
+                    </bm:MapLayer.Position>
+                </bm:Pushpin>
+            </bm:Map.Children>
 
+        </bm:Map>
         <!-- Vertical scrolling list only used when snapped -->
         <ListView
             x:Name="itemListView"
@@ -141,5 +162,6 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
+        
     </Grid>
 </common:LayoutAwarePage>
