@@ -19,33 +19,51 @@ namespace MvcwebService.Controllers
             return new string[] { "value1", "value2" };
         }
         */
-        public IEnumerable<Person> Get()
+        public IEnumerable<Person> Get(int PostCode = 0)
         {
-            return getPersons();
+            var p = getPersons(PostCode);
+            return p;
         }
 
-        // GET api/values/5
-        public Person Get(int id)
-        {
-            using (LassiterEntities entity = new LassiterEntities())
-            {
-                // entity.People pObj = new PersonEntity();
-                return entity.People.Where(u => u.ID == id).FirstOrDefault();
+        //// GET api/values/5
+        //public Person Get(int id)
+        //{
+        //    using (LassiterEntities entity = new LassiterEntities())
+        //    {
+        //        // entity.People pObj = new PersonEntity();
+        //        return entity.People.Where(u => u.ID == id).FirstOrDefault();
                
-            }
+        //    }
         
 
          
-        }
+        //}
 
-
-
-        private IList<Person> getPersons()
+        private IList<Person> getPersons(int PostCode)
         {
             using (LassiterEntities entity = new LassiterEntities())
             {
                // entity.People pObj = new PersonEntity();
-                return entity.People.ToList();
+                if (PostCode == 0)
+                {
+                    return entity.People.ToList();
+                }
+                else
+                {
+                    var postcodeLocation = (from p in entity.Postcodes
+                                               where p.PostCode1 == PostCode
+                                               select p).First().MapRef;
+                    if (postcodeLocation != null)
+                    {
+                        return (from pp in entity.People
+                               where pp.MapRef.Distance(postcodeLocation) < 5000
+                               select pp).ToList();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
                 
             }
           

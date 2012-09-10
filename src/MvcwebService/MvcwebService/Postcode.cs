@@ -12,13 +12,14 @@ namespace MvcwebService
     using System;
     using System.Collections.Generic;
     
-    public partial class Person
+    public partial class Postcode
     {
         public int ID { get; set; }
-        public string Name { get; set; }
-        public decimal Latitude { get; set; }
+        public int PostCode1 { get; set; }
+        public string Locality { get; set; }
+        public string State { get; set; }
+        public Nullable<decimal> Latitude { get; set; }
         public Nullable<decimal> Longitude { get; set; }
-        public Nullable<bool> OnDuty { get; set; }
         public System.Data.Spatial.DbGeography MapRef { get; set; }
     }
 }

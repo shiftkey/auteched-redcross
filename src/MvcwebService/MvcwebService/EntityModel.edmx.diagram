@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="6d1524459eb345eaa609f7233792e31d" Name="Diagram1">
         <EntityTypeShape EntityType="LassiterModel.Person" Width="3" PointX="2.125" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LassiterModel.Postcode" Width="1.5" PointX="5.375" PointY="1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

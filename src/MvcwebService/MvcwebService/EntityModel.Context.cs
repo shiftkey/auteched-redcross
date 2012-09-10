@@ -26,5 +26,6 @@ namespace MvcwebService
         }
     
         public DbSet<Person> People { get; set; }
+        public DbSet<Postcode> Postcodes { get; set; }
     }
 }
