@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lasseter.Entities
 {
-    class Person
+    public class Person
     {
         public String Name { get; set; }
         public double Latitude { get; set; }

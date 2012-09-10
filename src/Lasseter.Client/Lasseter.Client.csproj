@@ -163,6 +163,12 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Lasseter.Entities\Lasseter.Entities.csproj">
+      <Project>{57ddcfbd-4999-4615-bf08-62829761c078}</Project>
+      <Name>Lasseter.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>
