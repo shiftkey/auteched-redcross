@@ -53,21 +53,6 @@ namespace Lasseter.Client
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
                 //Associate the frame with a SuspensionManager key                                
-                SuspensionManager.RegisterFrame(rootFrame, "AppFrame");
-
-                if (args.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    // Restore the saved session state only when appropriate
-                    try
-                    {
-                        await SuspensionManager.RestoreAsync();
-                    }
-                    catch (SuspensionManagerException)
-                    {
-                        //Something went wrong restoring state.
-                        //Assume there is no state and continue
-                    }
-                }
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
@@ -95,9 +80,6 @@ namespace Lasseter.Client
         /// <param name="e">Details about the suspend request.</param>
         private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
-            var deferral = e.SuspendingOperation.GetDeferral();
-            await SuspensionManager.SaveAsync();
-            deferral.Complete();
         }
     }
 }
