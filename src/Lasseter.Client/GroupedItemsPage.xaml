@@ -53,11 +53,11 @@
 
         <bm:Map Credentials="AqX7H3KE05FxjI7td5C78WpSiMFzfJkucphNijXVmpOU0wKFb7c_dVY7FHKO75DW" x:Name="myMap" Margin="414,0,52,180" Grid.Row="1" Width="Auto"/>
 
-        <StackPanel HorizontalAlignment="Center" Height="152" VerticalAlignment="Bottom" Width="529" Grid.Row="1" Margin="0,0,0,20">
-            <Rectangle x:Name="recAvailable" Fill="#FF42DE42" Height="52" Stroke="Black" Margin="0,0,-150,0"/>
-            <TextBlock TextWrapping="Wrap" Text="Available Volunteers" FontSize="16" TextAlignment="Center" Margin="0,0,10,0"/>
-            <Rectangle x:Name="recRequired" Fill="#FF474D87" Height="52" Stroke="Black" Margin="0,0,-387,0"/>
-            <TextBlock TextWrapping="Wrap" Text="Required Volunteers" FontSize="16" TextAlignment="Center"/>
+        <StackPanel HorizontalAlignment="Stretch" Height="152" VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="1" Margin="413,0,0,20">
+            <Rectangle x:Name="recAvailable" Fill="#FF42DE42" Height="52" Stroke="Black" Margin="0,0,387,0"/>
+            <TextBlock TextWrapping="Wrap" Text="Available Resources" FontSize="16" TextAlignment="Center" Margin="0,0,10,0"/>
+            <Rectangle x:Name="recRequired" Fill="#FF474D87" Height="52" Stroke="Black" Margin="0,0,150,0"/>
+            <TextBlock TextWrapping="Wrap" Text="Required Resources" FontSize="16" TextAlignment="Center"/>
         </StackPanel>
         <!-- Vertical scrolling list only used when snapped -->
         <ListView
@@ -102,7 +102,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Text="Red Cross Volunteers Availability System" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}" Margin="0,0,30,57"/>
+            <TextBlock x:Name="pageTitle" Text="Red Cross Resource Availability System" Grid.Column="1" IsHitTestVisible="false" Style="{StaticResource PageHeaderTextStyle}" Margin="0,0,30,57"/>
             <TextBlock x:Name="labelFind" Text="Find" HorizontalAlignment="Right" Grid.Column="1" VerticalAlignment="Center" Margin="0,0,250,0" />
             <TextBox x:Name="tbFind" HorizontalAlignment="Right" Grid.Column="1" Width="150" Height="50" VerticalAlignment="Center" Margin="0,0,90,0"/>
             <Button VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1" x:Name="btnFind" Margin="0,0,10,0" Height="50" Width="80" Content="Find" Click="btnFind_Click"/>

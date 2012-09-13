@@ -36,7 +36,7 @@ namespace Lasseter.Client.Data
         public static async Task<IEnumerable<Entities.Person>> PopulateInitialData()
         {
             HttpClient client = new HttpClient();
-            var response = await client.GetStringAsync("http://10.43.4.252/MvcwebService/api/values");
+            var response = await client.GetStringAsync("http://lassiter.azurewebsites.net/api/values");
 
             var people = JsonConvert.DeserializeObject<List<Entities.Person>>(response);
             AllPeople = new ObservableCollection<Person>(people);
@@ -46,7 +46,7 @@ namespace Lasseter.Client.Data
         public static async Task<IEnumerable<Entities.Person>> PopulateSelectedData(String pcode)
         {
             HttpClient client = new HttpClient();
-            var response = await client.GetStringAsync("http://10.43.4.252/MvcwebService/api/values?PostCode=" + pcode);
+            var response = await client.GetStringAsync("http://lassiter.azurewebsites.net/api/values?PostCode=" + pcode);
 
             var people = JsonConvert.DeserializeObject<List<Entities.Person>>(response);
             AllPeople = new ObservableCollection<Person>(people);
@@ -56,7 +56,7 @@ namespace Lasseter.Client.Data
         public static async Task<IEnumerable<Entities.PostCode>> LocationSelectedData(String pcode)
         {
             HttpClient client = new HttpClient();
-            String testing = "http://10.43.4.252/MvcwebService/api/postCode?pCode1=" + pcode;
+            String testing = "http://lassiter.azurewebsites.net/api/postCode?pCode1=" + pcode;
             var response = await client.GetStringAsync(testing);
 
             var location = JsonConvert.DeserializeObject<List<Entities.PostCode>>(response);
